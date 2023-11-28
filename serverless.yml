@@ -7,10 +7,35 @@ provider:
   name: aws
   runtime: nodejs18.x
 
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:*  # Voltar aqui para definir somente as ações utilizadas 
+          Resource: "arn:aws:dynamodb:::us-east-1:A922482202435:table/amazon-products"
+
+
 functions:
   api:
-    handler: index.handler
+    handler: /src/api/index.handler
     events:
       - httpApi:
           path: /
           method: get
+	
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: amazon-products
+        AttributeDefinitions:
+          - AttributeName: ID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: ID
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5	
+          WriteCapacityUnits: 5
