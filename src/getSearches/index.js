@@ -4,27 +4,17 @@ const dynamoDBClient = new DynamoDBClient({ region: 'us-east-1' });
 
 module.exports.handler = async (event) => {
   try {
-    // Consulta os três primeiros itens na tabela DynamoDB
     const params = {
-      TableName: process.env.DYNAMODB_TABLE,
-      Limit: 3, // Limita a consulta aos três primeiros itens
+      TableName: "amazon-products",
     };
 
     const scanCommand = new ScanCommand(params);
     const result = await dynamoDBClient.send(scanCommand);
-    const products = result.Items.map(item => {
+    const searches = result.Items;
       return {
-        id: item.id.S,
-        nome: item.nome.S,
-        preco: parseFloat(item.preco.N),
-        // ... outros atributos
+        statusCode: 200,
+        body: JSON.stringify({ searches }),
       };
-    });
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ products }),
-    };
   } catch (error) {
     console.error('Erro:', error);
     return {

@@ -33,6 +33,13 @@ functions:
     enviroment:
       DYNAMODB_TABLE: amazon-products
 
+  getSearch:
+    handler: /src/getSearch/index.handler
+    events:
+      - httpApi:
+        path: /search
+        method: get
+
 resources:
   Resources:
     usersTable:
