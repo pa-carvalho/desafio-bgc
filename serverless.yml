@@ -21,9 +21,18 @@ functions:
     handler: /src/api/index.handler
     events:
       - httpApi:
-          path: /
+          path: /api
           method: get
 	
+  getSearches:
+    handler: /src/getSearches/index.handler
+    events:
+      - httpApi:
+        path: /searches
+        method: get
+    enviroment:
+      DYNAMODB_TABLE: amazon-products
+
 resources:
   Resources:
     usersTable:
