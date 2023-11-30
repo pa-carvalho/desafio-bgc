@@ -13,7 +13,7 @@ module.exports.handler = async () => {
         // await page.waitForNavigation();
     
         // const productsHandles = await page.$$('div#anonCarousel1');
-        const productsHandles = await page.$$('.a-carousel >>> .p13n-sc-truncate-desktop-type2');
+        const productsHandles = await page.$$('.a-carousel-card');
         await page.screenshot({
             path: 'screenshot.jpg'
           });
