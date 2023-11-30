@@ -2,6 +2,7 @@ org: paulocarvalho
 app: desafio-bgc
 service: desafio-bgc
 frameworkVersion: '3'
+configValidationMode: error
 
 provider:
   name: aws
@@ -28,17 +29,21 @@ functions:
     handler: /src/getSearches/index.handler
     events:
       - httpApi:
-        path: /searches
-        method: get
-    enviroment:
+          path: /searches
+          method: get
+    environment:
       DYNAMODB_TABLE: amazon-products
 
   getSearch:
     handler: /src/getSearch/index.handler
     events:
       - httpApi:
-        path: /search
-        method: get
+          path: /search
+          method: get
+
+  scraper:
+    handler: /src/scraper/index.handler
+    
 
 resources:
   Resources:
