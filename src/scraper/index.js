@@ -106,7 +106,6 @@ const insertSearchIntoTable = async (groupedByCategory) => {
 module.exports.handler = async () => {
     try {
         const browser = await puppeteer.launch({
-            headless: false,
             defaultViewport: false,
             userDataDir: "./tmp",
         });
@@ -121,7 +120,7 @@ module.exports.handler = async () => {
 
         const search = await insertSearchIntoTable(groupedByCategory);
 
-        // await browser.close();
+        await browser.close();
 
         return {
             statusCode: 200,

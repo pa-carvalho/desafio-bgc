@@ -18,12 +18,6 @@ provider:
 
 
 functions:
-  api:
-    handler: /src/api/index.handler
-    events:
-      - httpApi:
-          path: /api
-          method: get
 	
   getSearches:
     handler: /src/getSearches/index.handler
@@ -33,13 +27,6 @@ functions:
           method: get
     environment:
       DYNAMODB_TABLE: amazon-products
-
-  #getSearch:
-    #handler: /src/getSearch/index.handler
-    #events:
-      #- httpApi:
-          #path: /search
-          #method: get
 
   scraper:
     handler: /src/scraper/index.handler
