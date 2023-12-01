@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const { DynamoDBClient, PutItemCommand } = require('@aws-sdk/client-dynamodb');
-// import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
+const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
+const uuid = require('uuid');
 
 const dynamoDBClient = new DynamoDBClient({ region: 'us-east-1' });
 
@@ -83,23 +84,25 @@ const extractProducts = async (page) => {
     return groupedByCategory;
 };
 
-/*
 // Função para inserir dados no DynamoDB
-const insertDataIntoDynamoDB = async (groupedCategories) => {
-    await Promise.all(groupedCategories.map(async (group) => {
-        const params = {
-            TableName: 'amazon-products',
-            Item: marshall({
-                category: group.category,
-                items: group.items,
-            }),
-        };
+const insertSearchIntoTable = async (groupedByCategory) => {
+  
+    const params = {
+      TableName: "amazon-products",
+      Item: marshall({
+        id: uuid.v4(),
+        createdAt: new Date().toISOString(),
+        groupedByCategory,
+      }),
+    };
+  
+    const putCommand = new PutItemCommand(params);
+  
+    await dynamoDBClient.send(putCommand);
+  
+    return unmarshall(params.Item);
+  }
 
-        const putCommand = new PutItemCommand(params);
-        await dynamoDBClient.send(putCommand);
-    }));
-};
-*/
 module.exports.handler = async () => {
     try {
         const browser = await puppeteer.launch({
@@ -114,24 +117,21 @@ module.exports.handler = async () => {
         });
         await page.goto('https://www.amazon.com.br/gp/bestsellers/?ref_=nav_cs_bestsellers');
 
-        const test = await extractProducts(page);
+        const groupedByCategory = await extractProducts(page);
 
-        // console.log(test);
-        // await insertDataIntoDynamoDB(groupedCategories);
+        const search = await insertSearchIntoTable(groupedByCategory);
 
-        // await browser.close();
-
-        console.log(JSON.stringify(test, null, 2));
+        await browser.close();
 
         return {
             statusCode: 200,
-            body: JSON.stringify({ message: 'Scraping completed successfully' }),
+            body: JSON.stringify({ search, message: 'Esses são os itens mais vendidos da Amazon separados por categoria.' }),
         };
     } catch (error) {
         console.error('Error:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: 'Error processing the request' }),
+            body: JSON.stringify({ message: 'Ocorreu um erro ao tentar buscar os itens mais vendidos da Amazon.' }),
         };
     }
 };
