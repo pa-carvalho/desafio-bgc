@@ -1,92 +1,134 @@
-<!--
-title: 'AWS Simple HTTP Endpoint example in NodeJS'
-description: 'This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.'
-layout: Doc
-framework: v3
-platform: AWS
-language: nodeJS
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
+# <center> API Web Scraper na AWS </center>
 
-# Serverless Framework Node HTTP API on AWS
+ O Desafio 2 do processo seletivo de estagiário da BGC Brasil consiste em fazer um sistema HTTP API com Node.js rodando localmente usando Serverless Framework, cujo objetivo é pegar os 3 produtos mais vendidos da Amazon.
 
-This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.
+#### <center> 🚧 Desafio Concluído 🚧 </center>
 
-This template does not include any kind of persistence (database). For more advanced examples, check out the [serverless/examples repository](https://github.com/serverless/examples/) which includes Typescript, Mongo, DynamoDB and other examples.
+<p align="center">
+    <a href="https://nodejs.org/en">
+        <img src="svg/nodejs.svg" alt="nodejs" style="vertical-align:top; margin:6px 4px">
+    </a> 
+    
+    <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript">
+        <img src="svg/js.svg" alt="js" style="vertical-align:top; margin:6px 4px">
+    </a>
+    
+    <a href="https://aws.amazon.com/pt/">
+        <img src="svg/aws.svg" alt="aws" style="vertical-align:top; margin:6px 4px">
+    </a>
+    
+    <a href="https://www.npmjs.com/">
+        <img src="svg/npm.svg" alt="npm" style="vertical-align:top; margin:6px 4px">
+    </a>
+    
+    <a href="mailto:paulocarvalho@poli.ufrj.br">
+        <img src="svg/gmail.svg" alt="gmail" style="vertical-align:top; margin:6px 4px">
+    </a>
+    
+    <a href="https://www.linkedin.com/in/paulo-carvalho-a893a017b/">
+        <img src="svg/linkedin.svg" alt="linkedin" style="vertical-align:top; margin:6px 4px">
+    </a>  
+</p>
 
-## Usage
+📋 Tabela de conteúdos
+=================
+<!--ts-->
+   * [Tecnologias](#🛠-tecnologias)
+   * [Pré-requisitos](#📌-pré-requisitos)
+   * [Rodando o Back End (servidor)](#🎲-rodando-o-back-end)
+   * [Invocando via HTTP](#🌐-invocando-via-http)
+   * [Invocando Localmente](#📍-invocando-localmente)
+   * [Autor](#🪞-autor)
+<!--te-->
 
-### Deployment
+### 🛠 Tecnologias
 
-```
-$ serverless deploy
-```
+As seguintes ferramentas foram usadas na construção do projeto:
 
-After deploying, you should see output similar to:
+👉 [AWS Lambda](https://aws.amazon.com/pt/lambda/)
+👉 [AWS API Gateway](https://aws.amazon.com/pt/api-gateway/)
+👉 [AWS DynamoDB](https://aws.amazon.com/pt/dynamodb/)
+👉 [Serverless Framework](https://www.serverless.com/)
+👉 [Node.js](https://nodejs.org/en/)
+👉 [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+
+### 📌 Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+
+* [Git](https://git-scm.com)
+* [Node.js](https://nodejs.org/en/).
+
+### 🎲 Rodando o Back End
 
 ```bash
-Deploying aws-node-http-api-project to stage dev (us-east-1)
+# Clone este repositório
+$ git clone "https://github.com/pa-carvalho/desafio-bgc"
 
-✔ Service deployed to stack aws-node-http-api-project-dev (152s)
+# Acesse a pasta do projeto no terminal/cmd
+$ cd desafio-bgc
 
-endpoint: GET - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/
+# Instale as dependências
+$ npm install
+
+# Faça o deploy
+$ sls deploy
+```
+
+Após finalizar o deploy, você verá o seguinte output:
+
+```bash
+Deploying desafio-bgc to stage dev (us-east-1)
+✔ Your AWS account is now integrated into Serverless Framework Observability
+✔ Serverless Framework Observability is enabled
+
+✔ Service deployed to stack desafio-bgc-dev (89s)
+
+dashboard: https://app.serverless.com/paulocarvalho/apps/desafio-bgc/desafio-bgc/dev/us-east-1
+endpoint: GET - https://9ohievhgwh.execute-api.us-east-1.amazonaws.com/searches
 functions:
-  hello: aws-node-http-api-project-dev-hello (1.9 kB)
+  getSearches: desafio-bgc-dev-getSearches (11 MB)
+  scraper: desafio-bgc-dev-scraper (11 MB)
 ```
 
-_Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [http event docs](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/).
+### 🌐 Invocando via HTTP
 
-### Invocation
-
-After successful deployment, you can call the created application via HTTP:
+Depois de realizar o deploy com sucesso, você pode invocar a aplicação via HTTP:
 
 ```bash
-curl https://xxxxxxx.execute-api.us-east-1.amazonaws.com/
+curl https://9ohievhgwh.execute-api.us-east-1.amazonaws.com/searches
 ```
 
-Which should result in response similar to the following (removed `input` content for brevity):
+O que deve retornar o que estamos esperando, que seria os 3 produtos mais vendidos da página da Amazon por categoria.
 
-```json
-{
-  "message": "Go Serverless v2.0! Your function executed successfully!",
-  "input": {
-    ...
-  }
-}
-```
+### 📍 Invocando Localmente
 
-### Local development
-
-You can invoke your function locally by using the following command:
+Outra opção é invocar a aplicação localmente:
 
 ```bash
-serverless invoke local --function hello
+sls invoke local -f getSearches
 ```
 
-Which should result in response similar to the following:
+O output será o mesmo que o anterior (quando invocado via HTTP).
 
-```
-{
-  "statusCode": 200,
-  "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
-}
-```
+_OBS: Aqui não precisamos inserir o sls deploy na linha de comando_
 
+### 🪞 Autor
 
-Alternatively, it is also possible to emulate API Gateway and Lambda locally by using `serverless-offline` plugin. In order to do that, execute the following command:
+<p align="left">
+    <a href="#">
+        <img src="svg/foto_perfil.jpeg" alt="Foto" style="vertical-align:top; margin:6px 4px">
+</p>
 
-```bash
-serverless plugin install -n serverless-offline
-```
+Feito com ❤️ por Paulo Carvalho 👋🏽 Entre em contato!
+botar badge de gmail e linkedin
 
-It will add the `serverless-offline` plugin to `devDependencies` in `package.json` file as well as will add it to `plugins` in `serverless.yml`.
-
-After installation, you can start local emulation with:
-
-```
-serverless offline
-```
-
-To learn more about the capabilities of `serverless-offline`, please refer to its [GitHub repository](https://github.com/dherault/serverless-offline).
+<p align="left">
+    <a href="mailto:paulocarvalho@poli.ufrj.br">
+        <img src="svg/gmail.svg" alt="gmail" style="vertical-align:top; margin:6px 4px">
+    </a>
+    
+    <a href="https://www.linkedin.com/in/paulo-carvalho-a893a017b/">
+        <img src="svg/linkedin.svg" alt="linkedin" style="vertical-align:top; margin:6px 4px">
+    </a>
+</p>
