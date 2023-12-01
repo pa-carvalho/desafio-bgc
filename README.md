@@ -2,29 +2,41 @@
 
  O Desafio 2 do processo seletivo de estagiário da BGC Brasil consiste em fazer um sistema HTTP API com Node.js rodando localmente usando Serverless Framework, cujo objetivo é pegar os 3 produtos mais vendidos da Amazon.
 
-#### <center> 🚧 Desafio Concluído 🚧 </center>
+<h4 align="center">
+  🚧 Desafio Concluído 🚧
+</h4>
 
 <p align="center">
     <a href="https://nodejs.org/en">
         <img src="svg/nodejs.svg" alt="nodejs" style="vertical-align:top; margin:6px 4px">
     </a> 
-    
+</p>
+
+<p align="left">
     <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript">
         <img src="svg/js.svg" alt="js" style="vertical-align:top; margin:6px 4px">
     </a>
-    
+</p>
+
+<p align="left">   
     <a href="https://aws.amazon.com/pt/">
         <img src="svg/aws.svg" alt="aws" style="vertical-align:top; margin:6px 4px">
     </a>
-    
+</p>
+
+<p align="left">    
     <a href="https://www.npmjs.com/">
         <img src="svg/npm.svg" alt="npm" style="vertical-align:top; margin:6px 4px">
     </a>
-    
+</p>
+
+<p align="left">    
     <a href="mailto:paulocarvalho@poli.ufrj.br">
         <img src="svg/gmail.svg" alt="gmail" style="vertical-align:top; margin:6px 4px">
     </a>
-    
+</p>
+
+<p align="left">    
     <a href="https://www.linkedin.com/in/paulo-carvalho-a893a017b/">
         <img src="svg/linkedin.svg" alt="linkedin" style="vertical-align:top; margin:6px 4px">
     </a>  
@@ -117,17 +129,18 @@ _OBS: Aqui não precisamos inserir o sls deploy na linha de comando_
 
 <p align="left">
     <a href="#">
-        <img src="svg/foto_perfil.jpeg" alt="Foto" style="vertical-align:top; margin:6px 4px">
+        <img src="svg/foto_perfil.jpeg" width="150" height="200" alt="Foto" style="vertical-align:top; margin:6px 4px">
 </p>
 
 Feito com ❤️ por Paulo Carvalho 👋🏽 Entre em contato!
-botar badge de gmail e linkedin
 
 <p align="left">
     <a href="mailto:paulocarvalho@poli.ufrj.br">
         <img src="svg/gmail.svg" alt="gmail" style="vertical-align:top; margin:6px 4px">
     </a>
-    
+</p>
+
+ <p align="left">   
     <a href="https://www.linkedin.com/in/paulo-carvalho-a893a017b/">
         <img src="svg/linkedin.svg" alt="linkedin" style="vertical-align:top; margin:6px 4px">
     </a>

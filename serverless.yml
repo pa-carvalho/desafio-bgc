@@ -13,7 +13,8 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            - dynamodb:*  # Voltar aqui para definir somente as ações utilizadas 
+            - dynamodb:Scan
+            - dynamodb:PutItem
           Resource: "arn:aws:dynamodb:us-east-1:922482202435:table/amazon-products"
 
 
