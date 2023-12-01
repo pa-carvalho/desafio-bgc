@@ -14,7 +14,7 @@ provider:
         - Effect: Allow
           Action:
             - dynamodb:*  # Voltar aqui para definir somente as ações utilizadas 
-          Resource: "arn:aws:dynamodb:::us-east-1:A922482202435:table/amazon-products"
+          Resource: "arn:aws:dynamodb:us-east-1:922482202435:table/amazon-products"
 
 
 functions:
@@ -34,12 +34,12 @@ functions:
     environment:
       DYNAMODB_TABLE: amazon-products
 
-  getSearch:
-    handler: /src/getSearch/index.handler
-    events:
-      - httpApi:
-          path: /search
-          method: get
+  #getSearch:
+    #handler: /src/getSearch/index.handler
+    #events:
+      #- httpApi:
+          #path: /search
+          #method: get
 
   scraper:
     handler: /src/scraper/index.handler
