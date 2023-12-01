@@ -15,7 +15,7 @@ provider:
           Action:
             - dynamodb:Scan
             - dynamodb:PutItem
-          Resource: !Ref products
+          Resource: !GetAtt products.Arn
 
 
 functions:
@@ -31,7 +31,6 @@ functions:
 
   scraper:
     handler: /src/scraper/index.handler
-    
 
 resources:
   Resources:
@@ -46,5 +45,5 @@ resources:
           - AttributeName: ID
             KeyType: HASH
         ProvisionedThroughput:
-          ReadCapacityUnits: 5	
+          ReadCapacityUnits: 5
           WriteCapacityUnits: 5

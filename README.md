@@ -8,7 +8,7 @@
   🚧 Desafio Concluído 🚧
 </h4>
 
-<p align="center">
+<p align="left">
     <a href="https://nodejs.org/en">
         <img src="svg/nodejs.svg" alt="nodejs" style="vertical-align:top; margin:6px 4px">
     </a> 
