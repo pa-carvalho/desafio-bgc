@@ -32,18 +32,6 @@
     </a>
 </p>
 
-<p align="left">    
-    <a href="mailto:paulocarvalho@poli.ufrj.br">
-        <img src="svg/gmail.svg" alt="gmail" style="vertical-align:top; margin:6px 4px">
-    </a>
-</p>
-
-<p align="left">    
-    <a href="https://www.linkedin.com/in/paulo-carvalho-a893a017b/">
-        <img src="svg/linkedin.svg" alt="linkedin" style="vertical-align:top; margin:6px 4px">
-    </a>  
-</p>
-
 📋 Tabela de conteúdos
 =================
 <!--ts-->
