@@ -86,22 +86,22 @@ const extractProducts = async (page) => {
 
 // Função para inserir dados no DynamoDB
 const insertSearchIntoTable = async (groupedByCategory) => {
-  
+
     const params = {
-      TableName: "amazon-products",
-      Item: marshall({
-        id: uuid.v4(),
-        createdAt: new Date().toISOString(),
-        groupedByCategory,
-      }),
+        Item: marshall({
+            ID: uuid.v4(),
+            createdAt: new Date().toISOString(),
+            groupedByCategory,
+        }),
+        TableName: "amazon-products",
     };
-  
+
     const putCommand = new PutItemCommand(params);
-  
+
     await dynamoDBClient.send(putCommand);
-  
+
     return unmarshall(params.Item);
-  }
+}
 
 module.exports.handler = async () => {
     try {
