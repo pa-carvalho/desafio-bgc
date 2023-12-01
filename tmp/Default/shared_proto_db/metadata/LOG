@@ -1,3 +1,3 @@
-2023/11/30-17:02:39.991 1b464 Reusing MANIFEST /home/paulo/desafio-bgc/tmp/Default/shared_proto_db/metadata/MANIFEST-000001
-2023/11/30-17:02:39.991 1b464 Recovering log #3
-2023/11/30-17:02:39.992 1b464 Reusing old log /home/paulo/desafio-bgc/tmp/Default/shared_proto_db/metadata/000003.log 
+2023/11/30-22:05:55.083 1f9f0 Reusing MANIFEST /home/paulo/desafio-bgc/tmp/Default/shared_proto_db/metadata/MANIFEST-000001
+2023/11/30-22:05:55.084 1f9f0 Recovering log #3
+2023/11/30-22:05:55.084 1f9f0 Reusing old log /home/paulo/desafio-bgc/tmp/Default/shared_proto_db/metadata/000003.log 

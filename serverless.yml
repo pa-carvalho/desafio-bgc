@@ -52,10 +52,10 @@ resources:
       Properties:
         TableName: amazon-products
         AttributeDefinitions:
-          - AttributeName: ID
+          - AttributeName: id
             AttributeType: S
         KeySchema:
-          - AttributeName: ID
+          - AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 5	
