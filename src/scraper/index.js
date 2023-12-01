@@ -121,7 +121,7 @@ module.exports.handler = async () => {
 
         const search = await insertSearchIntoTable(groupedByCategory);
 
-        await browser.close();
+        // await browser.close();
 
         return {
             statusCode: 200,
