@@ -15,7 +15,7 @@ provider:
           Action:
             - dynamodb:Scan
             - dynamodb:PutItem
-          Resource: "arn:aws:dynamodb:us-east-1:922482202435:table/amazon-products"
+          Resource: !Ref products
 
 
 functions:
@@ -35,7 +35,7 @@ functions:
 
 resources:
   Resources:
-    usersTable:
+    products:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: amazon-products

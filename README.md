@@ -1,4 +1,6 @@
-# <center> API Web Scraper na AWS </center>
+<h1 align="center">
+  API Web Scraper na AWS
+</h1>
 
  O Desafio 2 do processo seletivo de estagiário da BGC Brasil consiste em fazer um sistema HTTP API com Node.js rodando localmente usando Serverless Framework, cujo objetivo é pegar os 3 produtos mais vendidos da Amazon.
 
